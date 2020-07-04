@@ -1,6 +1,12 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
+  "mySqlDs": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "medicinefinder",
+    "password": "",
+    "name": "mySqlDs",
+    "user": "root",
+    "connector": "mysql"
   }
 }
