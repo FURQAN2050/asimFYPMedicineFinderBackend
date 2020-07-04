@@ -1,0 +1,35 @@
+{
+  "name": "account",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "role": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "storeName": {
+      "type": "string"
+    },
+    "directionX": {
+      "type": "string"
+    },
+    "directionY": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

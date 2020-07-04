@@ -34,5 +34,9 @@
   "Role": {
     "dataSource": "mySqlDs",
     "public": false
+  },
+  "account": {
+    "dataSource": "mySqlDs",
+    "public": true
   }
 }
