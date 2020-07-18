@@ -26,6 +26,9 @@
     },
     "directionY": {
       "type": "string"
+    },
+    "draft": {
+      "type": "boolean"
     }
   },
   "validations": [],

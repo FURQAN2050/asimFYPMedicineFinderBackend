@@ -7,8 +7,8 @@ module.exports = function(app) {
   }
   var ds = app.dataSources.mySqlDs;
 
-  // ds.autoupdate('shop', function (err) {
-  //     if (err) throw err;
-  //     console.log("shop Table Created")
-  // });
+  ds.autoupdate('account', function(err) {
+    if (err) throw err;
+    console.log('account table created');
+  });
 };
