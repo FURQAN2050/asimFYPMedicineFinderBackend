@@ -29,10 +29,30 @@
     },
     "draft": {
       "type": "boolean"
+    },
+    "phoneNumber1": {
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "medicalstore": {
+      "type": "belongsTo",
+      "model": "medicalstore",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "favourites": {
+      "type": "hasMany",
+      "model": "favourite",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

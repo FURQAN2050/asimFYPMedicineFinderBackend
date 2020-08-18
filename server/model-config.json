@@ -38,5 +38,21 @@
   "account": {
     "dataSource": "mySqlDs",
     "public": true
+  },
+  "medicine": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "medicalstore": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "favourite": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "medicinerequest": {
+    "dataSource": "mySqlDs",
+    "public": true
   }
 }

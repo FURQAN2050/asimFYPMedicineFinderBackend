@@ -1,0 +1,35 @@
+{
+  "name": "medicalstore",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "directionX": {
+      "type": "string"
+    },
+    "directionY": {
+      "type": "string"
+    },
+    "phoneNumber1": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "medicines": {
+      "type": "hasMany",
+      "model": "medicine",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

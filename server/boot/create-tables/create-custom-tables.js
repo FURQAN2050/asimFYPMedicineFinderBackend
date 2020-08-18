@@ -11,4 +11,21 @@ module.exports = function(app) {
     if (err) throw err;
     console.log('account table created');
   });
+  ds.autoupdate('medicine', function(err) {
+    if (err) throw err;
+    console.log('medicine table created');
+  });
+  ds.autoupdate('medicalstore', function(err) {
+    if (err) throw err;
+    console.log('medicalstore table created');
+  });
+
+  ds.autoupdate('favourite', function(err) {
+    if (err) throw err;
+    console.log('favourite table created');
+  });
+  ds.autoupdate('medicinerequest', function(err) {
+    if (err) throw err;
+    console.log('medicinerequest table created');
+  });
 };
