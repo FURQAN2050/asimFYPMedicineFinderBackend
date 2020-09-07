@@ -1,12 +1,7 @@
 {
   "mySqlDs": {
-    "host": "localhost",
-    "port": 3306,
-    "url": "",
-    "database": "medicinefinder",
-    "password": "",
-    "name": "mySqlDs",
-    "user": "root",
-    "connector": "mysql"
+    "connector": "loopback-connector-mongodb",
+    "url": "mongodb://asim:dubai123@ds123129.mlab.com:23129/asimmedicinefinder"
   }
+
 }
