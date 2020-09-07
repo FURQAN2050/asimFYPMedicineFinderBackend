@@ -41,6 +41,9 @@
     },
     "password": {
       "type": "string"
+    },
+    "userRole": {
+      "type": "string"
     }
   },
   "validations": [],
