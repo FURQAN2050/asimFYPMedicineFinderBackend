@@ -44,6 +44,9 @@
     },
     "userRole": {
       "type": "string"
+    },
+    "draft": {
+      "type": "boolean"
     }
   },
   "validations": [],
