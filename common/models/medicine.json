@@ -14,10 +14,22 @@
     },
     "formula": {
       "type": "string"
+    },
+    "potency":{
+      "type":"string"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "accountprofiles": {
+      "type": "hasOne",
+      "model": "accountprofile",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
