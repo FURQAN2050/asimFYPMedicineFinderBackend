@@ -15,8 +15,8 @@
     "formula": {
       "type": "string"
     },
-    "potency":{
-      "type":"string"
+    "potency": {
+      "type": "string"
     }
   },
   "validations": [],
