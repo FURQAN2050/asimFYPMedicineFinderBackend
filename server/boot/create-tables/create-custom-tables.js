@@ -23,4 +23,12 @@ module.exports = function(app) {
     if (err) throw err;
     console.log('favourite table created');
   });
+  ds.autoupdate('databaseSync', function(err) {
+    if (err) throw err;
+    console.log('databaseSync table created');
+  });
+  ds.autoupdate('databaseSyncConfig', function(err) {
+    if (err) throw err;
+    console.log('databaseSyncConfig table created');
+  });
 };

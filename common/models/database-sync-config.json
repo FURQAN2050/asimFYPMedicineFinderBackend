@@ -1,0 +1,41 @@
+{
+  "name": "databaseSyncConfig",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "accountprofileId": {
+      "type": "string"
+    },
+    "endpoint": {
+      "type": "string"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "authentication": {
+      "type": "string"
+    },
+    "medicineNameField": {
+      "type": "string"
+    },
+    "medicinePriceField": {
+      "type": "string"
+    },
+    "medicineStockField": {
+      "type": "string"
+    },
+    "medicinePotencyField": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

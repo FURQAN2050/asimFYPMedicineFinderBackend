@@ -51,5 +51,13 @@
   "favourite": {
     "dataSource": "mySqlDs",
     "public": true
+  },
+  "databaseSync": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "databaseSyncConfig": {
+    "dataSource": "mySqlDs",
+    "public": true
   }
 }

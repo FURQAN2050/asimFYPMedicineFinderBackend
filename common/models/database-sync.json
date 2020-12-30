@@ -1,0 +1,23 @@
+{
+  "name": "databaseSync",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "accountprofileId": {
+      "type": "string"
+    },
+    "updateAt": {
+      "type": "string"
+    },
+    "startAt": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
