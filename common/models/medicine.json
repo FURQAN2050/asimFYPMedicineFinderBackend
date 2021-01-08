@@ -17,6 +17,9 @@
     },
     "potency": {
       "type": "string"
+    },
+    "quantity": {
+      "type": "string"
     }
   },
   "validations": [],
