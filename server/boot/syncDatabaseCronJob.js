@@ -90,6 +90,9 @@ module.exports = (app) => {
                 }
                 let updatedMedicine = await app.models.medicine.upsertWithWhere({ id: medicineUpdateObj.id }, medicineUpdateObj);
               } else {
+                if(parseInt(medicineTobeAdded.quantity)==0){
+                    continue;
+                  }
                 //create Medicines;
                 createdMedicineObj = {
                   name: medicineTobeAdded.name || "",
