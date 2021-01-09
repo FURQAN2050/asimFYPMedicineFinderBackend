@@ -14,26 +14,27 @@
     ]
   },
   "User": {
-    "dataSource": "mySqlDs"
+    "dataSource": "mySqlDs",
+    "public": true
   },
   "AccessToken": {
     "dataSource": "mySqlDs",
-    "public": false
+    "public": true
   },
   "ACL": {
     "dataSource": "mySqlDs",
-    "public": false
+    "public": true
   },
   "RoleMapping": {
     "dataSource": "mySqlDs",
-    "public": false,
+    "public": true,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
     "dataSource": "mySqlDs",
-    "public": false
+    "public": true
   },
   "account": {
     "dataSource": "mySqlDs",
@@ -48,6 +49,14 @@
     "public": true
   },
   "favourite": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "databaseSync": {
+    "dataSource": "mySqlDs",
+    "public": true
+  },
+  "databaseSyncConfig": {
     "dataSource": "mySqlDs",
     "public": true
   }
