@@ -12,7 +12,7 @@ module.exports = (app) => {
             console.log("step-1 :"+"get data from databaseSyncconfig table")
             let databaseconfigs = await app.models.databaseSyncConfig.find();
             console.log(databaseconfigs);
-            
+
             // traverse every medical store to get medicine
             console.log("step-2 :"+"traverse every medical store to get medicine");
             for(let i=0;i<databaseconfigs.length;i++){
@@ -20,20 +20,29 @@ module.exports = (app) => {
                 console.log(databaseConfig);
                 let medicalStore=databaseConfig;
                 let medicalStoreEndpoint=medicalStore.endpoint;
+                let medicalStoreData=[];
 
-                
 
-                const axiosRequest = await axios.get(medicalStoreEndpoint)
-                let medicalStoreData = axiosRequest.data;
-                console.log(medicalStoreData);
-                
+                try{
+                  const axiosRequest = await axios.get(medicalStoreEndpoint)
+                  medicalStoreData = axiosRequest.data;
+                  console.log(medicalStoreData);
+                }catch(e){
+                  console.log("Failed to get the data from Endpoint");
+                  continue;
+                }
+                if(medicalStoreData.length==0){
+                  console.log("skipping MedicalStore:since we don't get any data");
+                  continue;
+                }
+
                 let medicineFieldMapList=[];
 
                 let medicineNameFieldMap=medicalStore.medicineNameField;
                 let splitedMedicineNameFieldMap=medicineNameFieldMap.split("|");
                 let medicineFieldMap={medicalStoreField:splitedMedicineNameFieldMap[0] , medicineFinderField:splitedMedicineNameFieldMap[1]};
                 medicineFieldMapList.push(medicineFieldMap);
-                
+
                 let medicinePriceFieldMap=medicalStore.medicinePriceField;
                 let splitedMedicinePriceFieldMap=medicinePriceFieldMap.split("|");
                  medicineFieldMap={medicalStoreField:splitedMedicinePriceFieldMap[0] , medicineFinderField:splitedMedicinePriceFieldMap[1]};
@@ -43,7 +52,7 @@ module.exports = (app) => {
                 let splitedMedicinePotencyFieldMap=medicinePotencyFieldMap.split("|");
                  medicineFieldMap={medicalStoreField:splitedMedicinePotencyFieldMap[0] , medicineFinderField:splitedMedicinePotencyFieldMap[1]};
                  medicineFieldMapList.push(medicineFieldMap);
-                 
+
                 let medicineStockFieldMap=medicalStore.medicineStockField;
                 let splitedMedicineStockFieldMap=medicineStockFieldMap.split("|");
                  medicineFieldMap={medicalStoreField:splitedMedicineStockFieldMap[0] , medicineFinderField:splitedMedicineStockFieldMap[1]};
@@ -68,7 +77,7 @@ module.exports = (app) => {
                     //  let medcinetobeAddedObj={};
                  });
                  //console.log(medicalStoreData);
-                 
+
                 for (let i = 0; i < medicalStoreData.length; i++) {
                     let medicineTobeAdded=medicalStoreData[i];
                     //find medicine .
@@ -108,13 +117,13 @@ module.exports = (app) => {
                     }
                 }
 
-                 
+
 
 
                 console.log('final end');
 
             }
-            // update and add medicines in our medicine table 
+            // update and add medicines in our medicine table
             // check if one job already in progress so return 2nd job
 
 
