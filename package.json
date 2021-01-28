@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint",
-    "build:sdk": "./node_modules/.bin/lb-sdk server/server ../../medicineFinder/src/app/shared/sdk"
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server ../asimFYPMedicineFinder/src/app/shared/sdk"
   },
   "dependencies": {
     "@mean-expert/loopback-component-realtime": "^1.0.2",

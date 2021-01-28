@@ -47,6 +47,9 @@
     },
     "draft": {
       "type": "boolean"
+    },
+    "cnic": {
+      "type": "string"
     }
   },
   "validations": [],

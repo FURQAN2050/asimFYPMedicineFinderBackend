@@ -32,6 +32,8 @@ module.exports = (app) => {
               throw "No Medical Store data Found";
             }
 
+
+            console.log("step-3 : making field map");
             let medicineFieldMapList = [];
 
             let medicineNameFieldMap = medicalStore.medicineNameField;
@@ -54,6 +56,7 @@ module.exports = (app) => {
             medicineFieldMap = { medicalStoreField: splitedMedicineStockFieldMap[0], medicineFinderField: splitedMedicineStockFieldMap[1] };
             medicineFieldMapList.push(medicineFieldMap);
 
+            console.log("step-4 : implement field map");
 
             medicalStoreData.forEach(element => {
               let medicineTobeAdded = element;
@@ -67,6 +70,7 @@ module.exports = (app) => {
               }
             });
 
+            console.log("step-3 : adding or updating medicine Logic");
             for (let i = 0; i < medicalStoreData.length; i++) {
               let medicineTobeAdded = medicalStoreData[i];
               //find medicine.
@@ -106,10 +110,12 @@ module.exports = (app) => {
             }
             console.log('Final end');
           } catch (e) {
+            
             console.log(`error occoured while fetching the the data from Medical Store ${databaseConfig.accountprofileId}
                 and the endpoint is ${databaseConfig.endpoint}.
                 Going to iterate next store.
                 `);
+                console.log(e)
             continue;
           }
         }
