@@ -1,7 +1,7 @@
 {
   "mySqlDs": {
     "connector": "loopback-connector-mongodb",
-    "url": "mongodb://asim:dubai123@ds123129.mlab.com:23129/asimmedicinefinder"
+    "url": "mongodb+srv://ShaikhAsim10000:asim7432@cluster0.xj4im.mongodb.net/medicinefinder?retryWrites=true&w=majority"
   }
 
 }
