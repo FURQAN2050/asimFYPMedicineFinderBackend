@@ -5,7 +5,11 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "likeMedicalStoreId": {
+      "type": "string"
+    }
+  },
   "validations": [],
   "relations": {},
   "acls": [],
