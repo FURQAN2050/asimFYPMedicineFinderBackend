@@ -50,6 +50,9 @@
     },
     "cnic": {
       "type": "string"
+    },
+    "licenseNumber": {
+      "type": "string"
     }
   },
   "validations": [],
