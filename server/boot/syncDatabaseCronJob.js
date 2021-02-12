@@ -110,7 +110,7 @@ module.exports = (app) => {
             }
             console.log('Final end');
           } catch (e) {
-            
+
             console.log(`error occoured while fetching the the data from Medical Store ${databaseConfig.accountprofileId}
                 and the endpoint is ${databaseConfig.endpoint}.
                 Going to iterate next store.
@@ -124,4 +124,43 @@ module.exports = (app) => {
       }
     }
   });
+  function BasicAuthSendRequest(httpRequestData, store) {
+    var serverUrl = !!ShopifyWrapper.ServerUrl ? ShopifyWrapper.ServerUrl : ConnectorConstants.CurrentStore.endpoint;
+    Utility.logAudit('Request final beefore= ', ShopifyWrapper.ServerUrl);
+
+    var finalUrl = serverUrl.trim() + httpRequestData.additionalUrl.trim();
+
+    Utility.logAudit('Request final = ', finalUrl);
+    var res = null;
+
+    if (!httpRequestData.headers) {
+      httpRequestData.headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Basic " + ConnectorConstants.CurrentStore.sessionID
+      };
+    }
+
+    Utility.logDebug('finalUrl = ', finalUrl);
+    Utility.logAudit('httpRequestData = ', JSON.stringify(httpRequestData));
+
+    if (httpRequestData.method === 'GET') {
+      res = nlapiRequestURL(finalUrl, null, httpRequestData.headers);
+    } else {
+      var postDataString = typeof httpRequestData.postData === "object" ?
+        JSON.stringify(httpRequestData.postData) : httpRequestData.postData;
+      Utility.logDebug('postDataString = ', postDataString);
+      res = nlapiRequestURL(finalUrl, postDataString, httpRequestData.headers, httpRequestData.method);
+    }
+
+    Utility.logAudit('f3_shopify_wraper.js => sendRequest', JSON.stringify({
+      response_headers: ConnectorCommon.getAllHeaderValues(res)
+    }));
+
+    var body = res.getBody();
+    Utility.logDebug('w_request body', body);
+    var serverResponse = eval('(' + body + ')');
+
+    return serverResponse;
+  }
 }
