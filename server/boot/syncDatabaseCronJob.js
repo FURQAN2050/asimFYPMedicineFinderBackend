@@ -1,5 +1,6 @@
 const schedule = require('node-schedule');
 const axios = require('axios');
+const base64Encode=require('../boot/utilities/base64_lib')
 
 
 module.exports = (app) => {
@@ -19,11 +20,21 @@ module.exports = (app) => {
           console.log(databaseConfig);
           let medicalStore = databaseConfig;
           let medicalStoreEndpoint = medicalStore.endpoint;
+          let username=medicalStore.userName;
+          let password=medicalStore.password;
+          let authType=medicalStore.authentication;
           let medicalStoreData = [];
           try {
             try {
-              const axiosRequest = await axios.get(medicalStoreEndpoint)
-              medicalStoreData = axiosRequest.data;
+              let serverResponse="";
+              if(!authType){
+                serverResponse = await axios.get(medicalStoreEndpoint)
+              }
+              else if(authType=="basicAuth"){
+                let headers=BasicAuth(medicalStoreEndpoint,username,password);
+                serverResponse=await axios.get(medicalStoreEndpoint, {headers: headers});
+              }
+              medicalStoreData = serverResponse.data;
               console.log(medicalStoreData);
             } catch (e) {
               throw "Failed to get the data from endpoint";
@@ -110,7 +121,7 @@ module.exports = (app) => {
             }
             console.log('Final end');
           } catch (e) {
-            
+
             console.log(`error occoured while fetching the the data from Medical Store ${databaseConfig.accountprofileId}
                 and the endpoint is ${databaseConfig.endpoint}.
                 Going to iterate next store.
@@ -123,5 +134,81 @@ module.exports = (app) => {
         console.log("Cron Job intreputed due to " + JSON.stringify(e));
       }
     }
+    async function BasicAuth(finalUrl, username, password) {
+      console.log(finalUrl);
+      serverResponse = { status: false }
+      var res = null;
+      let AuthHeader = "";
+      if (username && password) {
+        AuthHeader = base64_encode(username + ':' + password);
+      }
+
+      let headers = {
+        "Authorization": "Basic " + AuthHeader,
+        "Content-Type":"application/json"
+      };
+      return headers;
+      console.log(headers);
+      try{
+        res = await axios.get(finalUrl, {
+          headers: headers});
+        console.log(res.data);
+        return res;
+      }
+      catch(e){
+        console.log(e);
+      }
+      return serverResponse;
+    }
+    function base64_encode(data) {
+      // From: http://phpjs.org/functions
+      // +   original by: Tyler Akins (http://rumkin.com)
+      // +   improved by: Bayron Guevara
+      // +   improved by: Thunder.m
+      // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+      // +   bugfixed by: Pellentesque Malesuada
+      // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+      // +   improved by: Rafał Kukawski (http://kukawski.pl)
+      // *     example 1: base64_encode('Kevin van Zonneveld');
+      // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+      // mozilla has this native
+      // - but breaks in 2.0.0.12!
+      //if (typeof this.window['btoa'] === 'function') {
+      //    return btoa(data);
+      //}
+      var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+      var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+              ac = 0,
+              enc = '',
+              tmp_arr = [];
+
+      if (!data) {
+          return data;
+      }
+
+      do { // pack three octets into four hexets
+          o1 = data.charCodeAt(i++);
+          o2 = data.charCodeAt(i++);
+          o3 = data.charCodeAt(i++);
+
+          bits = o1 << 16 | o2 << 8 | o3;
+
+          h1 = bits >> 18 & 0x3f;
+          h2 = bits >> 12 & 0x3f;
+          h3 = bits >> 6 & 0x3f;
+          h4 = bits & 0x3f;
+
+          // use hexets to index into b64, and append result to encoded string
+          tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+      } while (i < data.length);
+
+      enc = tmp_arr.join('');
+
+      var r = data.length % 3;
+
+      return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
+
+  }
   });
+
 }
